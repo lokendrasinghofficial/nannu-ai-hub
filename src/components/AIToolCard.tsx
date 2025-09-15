@@ -1,0 +1,115 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, Star, Zap, CreditCard, Gift } from 'lucide-react';
+
+interface AITool {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  pricing: 'free' | 'freemium' | 'paid';
+  rating: number;
+  image?: string;
+  url: string;
+  features: string[];
+}
+
+interface AIToolCardProps {
+  tool: AITool;
+}
+
+export default function AIToolCard({ tool }: AIToolCardProps) {
+  const getPricingIcon = (pricing: string) => {
+    switch (pricing) {
+      case 'free':
+        return <Gift className="w-4 h-4" />;
+      case 'freemium':
+        return <Zap className="w-4 h-4" />;
+      case 'paid':
+        return <CreditCard className="w-4 h-4" />;
+      default:
+        return <Zap className="w-4 h-4" />;
+    }
+  };
+
+  const getPricingColor = (pricing: string) => {
+    switch (pricing) {
+      case 'free':
+        return 'bg-green-500/20 text-green-400 border-green-500/30';
+      case 'freemium':
+        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+      case 'paid':
+        return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+      default:
+        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+    }
+  };
+
+  const getCategoryGradient = (category: string): 'hero' | 'accent' | 'voice' | 'data' => {
+    const categoryMap: { [key: string]: 'hero' | 'accent' | 'voice' | 'data' } = {
+      'text': 'hero',
+      'image': 'accent',
+      'voice': 'voice',
+      'data': 'data',
+      'video': 'hero',
+      'research': 'data'
+    };
+    return categoryMap[category.toLowerCase()] || 'hero';
+  };
+
+  return (
+    <Card className="group bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/30 transition-smooth hover:shadow-card animate-fade-in">
+      <CardHeader className="space-y-3">
+        <div className="flex items-start justify-between">
+          <CardTitle className="text-lg font-semibold group-hover:gradient-text transition-smooth">
+            {tool.name}
+          </CardTitle>
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 text-amber-400">
+              <Star className="w-4 h-4 fill-current" />
+              <span className="text-sm font-medium">{tool.rating}</span>
+            </div>
+            <Badge 
+              variant="secondary" 
+              className={`${getPricingColor(tool.pricing)} text-xs font-medium`}
+            >
+              {getPricingIcon(tool.pricing)}
+              <span className="ml-1 capitalize">{tool.pricing}</span>
+            </Badge>
+          </div>
+        </div>
+        
+        <CardDescription className="text-muted-foreground line-clamp-2">
+          {tool.description}
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="space-y-4">
+        {/* Features */}
+        <div className="flex flex-wrap gap-2">
+          {tool.features.slice(0, 3).map((feature, index) => (
+            <Badge key={index} variant="outline" className="text-xs bg-secondary/50">
+              {feature}
+            </Badge>
+          ))}
+          {tool.features.length > 3 && (
+            <Badge variant="outline" className="text-xs bg-secondary/50">
+              +{tool.features.length - 3} more
+            </Badge>
+          )}
+        </div>
+
+        {/* Action Button */}
+        <Button 
+          variant={getCategoryGradient(tool.category)} 
+          className="w-full group"
+          onClick={() => window.open(tool.url, '_blank')}
+        >
+          <span>Try {tool.name}</span>
+          <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
