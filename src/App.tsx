@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import ScrollLine from "@/components/ScrollLine";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 
@@ -17,6 +18,7 @@ const App = () => (
       <BrowserRouter>
         <div className="min-h-screen bg-background text-foreground">
           <Navigation />
+          <ScrollLine />
           <Routes>
             <Route path="/" element={<Home />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
