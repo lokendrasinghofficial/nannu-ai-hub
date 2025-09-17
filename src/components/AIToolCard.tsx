@@ -1,25 +1,32 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Star, Zap, CreditCard, Gift } from 'lucide-react';
+import { ExternalLink, Star, Zap, CreditCard, Gift, Eye } from 'lucide-react';
 
 interface AITool {
   id: string;
   name: string;
   description: string;
+  detailedDescription?: string;
+  models?: string[];
+  howItWorks?: string;
+  howToUse?: string;
   category: string;
   pricing: 'free' | 'freemium' | 'paid';
+  pricingDetails?: string;
   rating: number;
   image?: string;
   url: string;
   features: string[];
+  keywords?: string[];
 }
 
 interface AIToolCardProps {
   tool: AITool;
+  onViewDetails?: (tool: AITool) => void;
 }
 
-export default function AIToolCard({ tool }: AIToolCardProps) {
+export default function AIToolCard({ tool, onViewDetails }: AIToolCardProps) {
   const getPricingIcon = (pricing: string) => {
     switch (pricing) {
       case 'free':
@@ -100,15 +107,27 @@ export default function AIToolCard({ tool }: AIToolCardProps) {
           )}
         </div>
 
-        {/* Action Button */}
-        <Button 
-          variant={getCategoryGradient(tool.category)} 
-          className="w-full group"
-          onClick={() => window.open(tool.url, '_blank')}
-        >
-          <span>Try {tool.name}</span>
-          <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
-        </Button>
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          {onViewDetails && (
+            <Button 
+              variant="outline" 
+              className="flex-1 group bg-secondary/30 hover:bg-secondary/50"
+              onClick={() => onViewDetails(tool)}
+            >
+              <Eye className="w-4 h-4 mr-2" />
+              <span>View Details</span>
+            </Button>
+          )}
+          <Button 
+            variant={getCategoryGradient(tool.category)} 
+            className="flex-1 group"
+            onClick={() => window.open(tool.url, '_blank')}
+          >
+            <span>Try {tool.name}</span>
+            <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth" />
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
