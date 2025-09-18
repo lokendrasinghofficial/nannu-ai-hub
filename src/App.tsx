@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import TextAI from "./pages/TextAI";
 import ImageAI from "./pages/ImageAI";
 import HeadshotsAI from "./pages/HeadshotsAI";
+import VideoEditorsAI from "./pages/VideoEditorsAI";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/text-ai" element={<TextAI />} />
           <Route path="/image-ai" element={<ImageAI />} />
           <Route path="/headshots-ai" element={<HeadshotsAI />} />
+          <Route path="/video-editors-ai" element={<VideoEditorsAI />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
