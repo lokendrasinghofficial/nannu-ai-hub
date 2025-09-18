@@ -8,6 +8,7 @@ import ScrollLine from "@/components/ScrollLine";
 import Home from "./pages/Home";
 import TextAI from "./pages/TextAI";
 import ImageAI from "./pages/ImageAI";
+import HeadshotsAI from "./pages/HeadshotsAI";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/text-ai" element={<TextAI />} />
           <Route path="/image-ai" element={<ImageAI />} />
+          <Route path="/headshots-ai" element={<HeadshotsAI />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
