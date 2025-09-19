@@ -22,7 +22,7 @@ const aiCategories = [
   { name: 'Image & Vision', href: '/image-ai', icon: Image, color: 'ai-image' },
   { name: 'Audio & Voice', href: '/voice-ai', icon: Mic, color: 'ai-voice' },
   { name: 'Data & Analytics', href: '/data-ai', icon: BarChart3, color: 'ai-data' },
-  { name: 'Video Editors', href: '/video-ai', icon: Video, color: 'ai-text' },
+  { name: 'Video Editors', href: '/video-editors-ai', icon: Video, color: 'ai-text' },
   { name: 'Headshots', href: '/headshots-ai', icon: Camera, color: 'ai-image' },
 ];
 
