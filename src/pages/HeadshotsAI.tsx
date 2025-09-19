@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AIToolCard from '@/components/AIToolCard';
 import AIToolModal from '@/components/AIToolModal';
+import { Camera, Sparkles } from 'lucide-react';
 
 // Import the AITool interface from AIToolCard to avoid type conflicts
 interface AITool {
@@ -468,28 +469,40 @@ export default function HeadshotsAI() {
   const [selectedTool, setSelectedTool] = useState<AITool | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            🧑‍💻 AI Headshot & Portrait Tools
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Transform your selfies into professional headshots with cutting-edge AI technology. 
-            Perfect for LinkedIn, resumes, and professional profiles.
-          </p>
+    <div className="min-h-screen pt-20">
+      {/* Header Section */}
+      <section className="py-12 px-4 bg-gradient-to-br from-card/30 via-background to-secondary/20">
+        <div className="container mx-auto">
+          <div className="text-center space-y-6 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Camera className="w-8 h-8 text-primary animate-pulse" />
+              <h1 className="text-4xl md:text-5xl font-bold gradient-text">
+                🧑‍💻 AI Headshot & Portrait Tools
+              </h1>
+              <Sparkles className="w-8 h-8 text-accent animate-pulse" />
+            </div>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Transform your selfies into professional headshots with cutting-edge AI technology. 
+              Perfect for LinkedIn, resumes, and professional profiles.
+            </p>
+          </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {headshotTools.map((tool) => (
-            <AIToolCard
-              key={tool.id}
-              tool={tool}
-              onViewDetails={setSelectedTool}
-            />
-          ))}
+      {/* Tools Grid */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {headshotTools.map((tool) => (
+              <AIToolCard
+                key={tool.id}
+                tool={tool}
+                onViewDetails={setSelectedTool}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       {selectedTool && (
         <AIToolModal
