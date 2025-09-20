@@ -15,6 +15,7 @@ import {
   X,
   Sparkles
 } from 'lucide-react';
+import ThemeToggle from '@/components/ThemeToggle';
 import nannuLogo from '@/assets/nannu-ai-logo.png';
 
 const aiCategories = [
@@ -92,8 +93,8 @@ export default function Navigation() {
               })}
             </div>
 
-            {/* Search Bar - Desktop */}
-            <div className="hidden md:block">
+            {/* Search Bar & Theme Toggle - Desktop */}
+            <div className="hidden md:flex items-center space-x-3">
               <form onSubmit={handleSearch} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                 <Input
@@ -112,18 +113,22 @@ export default function Navigation() {
                   <Search className="w-4 h-4 group-hover:text-primary" />
                 </Button>
               </form>
+              <ThemeToggle />
             </div>
 
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="lg:hidden relative overflow-hidden hover:bg-primary/10 transition-all duration-300"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 hover:opacity-100 transition-all duration-300"></div>
-              {isMenuOpen ? <X className="w-5 h-5 relative z-10" /> : <Menu className="w-5 h-5 relative z-10" />}
-            </Button>
+            {/* Mobile Menu Button & Theme Toggle */}
+            <div className="flex items-center space-x-3 lg:hidden">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="relative overflow-hidden hover:bg-primary/10 transition-all duration-300"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 hover:opacity-100 transition-all duration-300"></div>
+                {isMenuOpen ? <X className="w-5 h-5 relative z-10" /> : <Menu className="w-5 h-5 relative z-10" />}
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu */}

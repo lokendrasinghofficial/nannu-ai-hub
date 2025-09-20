@@ -24,7 +24,7 @@ interface AIToolDetails {
   rating: number;
   url: string;
   features: string[];
-  keywords: string[];
+  keywords?: string[];
 }
 
 interface AIToolModalProps {
