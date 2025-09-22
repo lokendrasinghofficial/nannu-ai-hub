@@ -170,10 +170,12 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="hero" size="lg">
-              <TrendingUp className="w-5 h-5 mr-2" />
-              View All Tools
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/all-tools">
+                <TrendingUp className="w-5 h-5 mr-2" />
+                View All Tools
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
             </Button>
           </div>
         </div>
