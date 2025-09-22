@@ -2,6 +2,7 @@ import SearchHero from '@/components/SearchHero';
 import AIToolCard from '@/components/AIToolCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles, Zap, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Mock data for AI tools
 const featuredTools = [
@@ -73,28 +74,32 @@ const categories = [
     description: 'Writing, coding, and content generation tools',
     icon: '🤖',
     count: 150,
-    color: 'hero'
+    color: 'hero',
+    route: '/text-ai'
   },
   {
     name: 'Image & Vision AI',
     description: 'Image generation, editing, and analysis tools',
     icon: '🎨',
     count: 120,
-    color: 'accent'
+    color: 'accent',
+    route: '/image-ai'
   },
   {
     name: 'Audio & Voice AI',
     description: 'Voice synthesis, music, and audio processing',
     icon: '🎵',
     count: 80,
-    color: 'voice'
+    color: 'voice',
+    route: '/voice-ai'
   },
   {
     name: 'Data & Analytics',
     description: 'Business intelligence and data analysis tools',
     icon: '📊',
     count: 90,
-    color: 'data'
+    color: 'data',
+    route: '/data-ai'
   }
 ];
 
@@ -118,9 +123,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category, index) => (
-              <div
+              <Link
                 key={index}
-                className="group bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-smooth hover:shadow-card cursor-pointer"
+                to={category.route}
+                className="group bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-smooth hover:shadow-card cursor-pointer block"
               >
                 <div className="text-center space-y-4">
                   <div className="text-4xl mb-4 group-hover:animate-bounce">
@@ -136,7 +142,7 @@ export default function Home() {
                     {category.count}+ tools
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
