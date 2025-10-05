@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, TrendingUp, Grid } from 'lucide-react';
 import AIToolCard from '@/components/AIToolCard';
 import AIToolModal from '@/components/AIToolModal';
@@ -2262,11 +2263,20 @@ const allAITools = [
 ];
 
 export default function AllTools() {
+  const [searchParams] = useSearchParams();
   const [selectedTool, setSelectedTool] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [pricingFilter, setPricingFilter] = useState('all');
   const [sortBy, setSortBy] = useState('rating');
+
+  // Set search query from URL params on mount
+  useEffect(() => {
+    const searchParam = searchParams.get('search');
+    if (searchParam) {
+      setSearchQuery(searchParam);
+    }
+  }, [searchParams]);
 
   const handleViewDetails = (tool) => {
     setSelectedTool(tool);
