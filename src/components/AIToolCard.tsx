@@ -65,20 +65,12 @@ export default function AIToolCard({ tool, onViewDetails }: AIToolCardProps) {
     return categoryMap[category.toLowerCase()] || 'hero';
   };
 
-  const shortenToolName = (name: string) => {
-    // Remove common suffixes and patterns
-    let shortened = name
-      .replace(/\s+(AI|by\s+\w+|with\s+AI|\+\s+\w+)$/i, '')
-      .replace(/\s+AI\s+/i, ' ')
-      .trim();
-    
-    // If still too long (> 20 chars), take first 2-3 words
-    if (shortened.length > 20) {
-      const words = shortened.split(' ');
-      shortened = words.slice(0, 2).join(' ');
+  const getButtonText = (name: string) => {
+    // If name is longer than 14 characters, just show "Try it"
+    if (name.length > 14) {
+      return "Try it";
     }
-    
-    return shortened;
+    return `Try ${name}`;
   };
 
   return (
@@ -140,7 +132,7 @@ export default function AIToolCard({ tool, onViewDetails }: AIToolCardProps) {
             className="flex-1 group"
             onClick={() => window.open(tool.url, '_blank')}
           >
-            <span className="truncate">Try {shortenToolName(tool.name)}</span>
+            <span>{getButtonText(tool.name)}</span>
             <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-smooth flex-shrink-0" />
           </Button>
         </div>
