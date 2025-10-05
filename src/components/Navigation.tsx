@@ -16,7 +16,6 @@ import {
   Sparkles
 } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
-import nannuLogo from '@/assets/nannu-ai-logo.png';
 
 const aiCategories = [
   { name: 'Text & Language', href: '/text-ai', icon: FileText, color: 'ai-text' },
@@ -58,15 +57,7 @@ export default function Navigation() {
         <div className="container mx-auto px-4 relative">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 group relative">
-              <div className="relative">
-                <img 
-                  src={nannuLogo} 
-                  alt="NannuAI Logo" 
-                  className="w-10 h-10 animate-float group-hover:animate-glow-pulse transition-smooth relative z-10"
-                />
-                <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              </div>
+            <Link to="/" className="flex items-center space-x-2 group relative">
               <span className="text-xl font-bold gradient-text group-hover:scale-105 transition-smooth">
                 NannuAI
               </span>
