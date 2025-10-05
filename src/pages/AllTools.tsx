@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 // ALL AI TOOLS FROM EVERY CATEGORY - 200+ TOOLS
+// Complete collection of AI tools across all categories
 const allAITools = [
   // TEXT & LANGUAGE AI TOOLS (27 tools)
   {
