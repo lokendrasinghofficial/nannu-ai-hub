@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,6 +16,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
+import SearchSuggestions from '@/components/SearchSuggestions';
 
 const aiCategories = [
   { name: 'Text & Language', href: '/text-ai', icon: FileText, color: 'ai-text' },
@@ -30,7 +31,9 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
+  const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,12 +44,29 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/all-tools?search=${encodeURIComponent(searchQuery.trim())}`);
       setIsMenuOpen(false);
+      setShowSuggestions(false);
     }
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setShowSuggestions(true);
   };
 
   return (
@@ -89,24 +109,36 @@ export default function Navigation() {
 
             {/* Search Bar & Theme Toggle - Desktop */}
             <div className="hidden md:flex items-center space-x-3">
-              <form onSubmit={handleSearch} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                <Input
-                  type="text"
-                  placeholder="Search AI tools..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-64 pr-12 bg-background/30 border-border/30 focus:border-primary/50 transition-all duration-300 backdrop-blur-sm rounded-xl relative z-10 group-hover:bg-background/50"
-                />
-                <Button 
-                  type="submit"
-                  size="sm" 
-                  variant="ghost" 
-                  className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-10 p-0 hover:bg-primary/20 rounded-lg z-20 group-hover:scale-110 transition-all duration-300"
-                >
-                  <Search className="w-4 h-4 group-hover:text-primary" />
-                </Button>
-              </form>
+              <div ref={searchRef} className="relative">
+                <form onSubmit={handleSearch} className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <Input
+                    type="text"
+                    placeholder="Search AI tools..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => setShowSuggestions(true)}
+                    className="w-64 pr-12 bg-background/30 border-border/30 focus:border-primary/50 transition-all duration-300 backdrop-blur-sm rounded-xl relative z-10 group-hover:bg-background/50"
+                  />
+                  <Button 
+                    type="submit"
+                    size="sm" 
+                    variant="ghost" 
+                    className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-10 p-0 hover:bg-primary/20 rounded-lg z-20 group-hover:scale-110 transition-all duration-300"
+                  >
+                    <Search className="w-4 h-4 group-hover:text-primary" />
+                  </Button>
+                </form>
+                {showSuggestions && (
+                  <SearchSuggestions 
+                    query={searchQuery} 
+                    onSelect={() => {
+                      setShowSuggestions(false);
+                      setSearchQuery('');
+                    }} 
+                  />
+                )}
+              </div>
               <ThemeToggle />
             </div>
 
