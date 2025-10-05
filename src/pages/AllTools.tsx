@@ -2414,7 +2414,7 @@ export default function AllTools() {
           
           {/* Results count */}
           <div className="mt-4 text-sm text-muted-foreground">
-            Showing {filteredTools.length} of {allTools.length} tools
+            Showing {filteredTools.length} of {allAITools.length} tools
           </div>
         </div>
       </section>
