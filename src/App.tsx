@@ -15,6 +15,7 @@ import DataAI from "./pages/DataAI";
 import VoiceAI from "./pages/VoiceAI";
 import AllTools from "./pages/AllTools";
 import NotFound from "./pages/NotFound";
+import SearchResults from "./pages/SearchResults";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/data-ai" element={<DataAI />} />
             <Route path="/voice-ai" element={<VoiceAI />} />
             <Route path="/all-tools" element={<AllTools />} />
+            <Route path="/search-results" element={<SearchResults />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,0 +1,4 @@
+project_id = "odldoanhbkwgqqfkcwpn"
+
+[functions.recommend-tools]
+verify_jwt = false
