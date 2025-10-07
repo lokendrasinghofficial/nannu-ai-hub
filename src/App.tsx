@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Navigation from "@/components/Navigation";
 import ScrollLine from "@/components/ScrollLine";
+import Footer from "@/components/Footer";
 import Home from "./pages/Home";
 import TextAI from "./pages/TextAI";
 import ImageAI from "./pages/ImageAI";
@@ -25,22 +26,25 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-background text-foreground flex flex-col">
           <Navigation />
           <ScrollLine />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/text-ai" element={<TextAI />} />
-            <Route path="/image-ai" element={<ImageAI />} />
-            <Route path="/headshots-ai" element={<HeadshotsAI />} />
-            <Route path="/video-editors-ai" element={<VideoEditorsAI />} />
-            <Route path="/data-ai" element={<DataAI />} />
-            <Route path="/voice-ai" element={<VoiceAI />} />
-            <Route path="/all-tools" element={<AllTools />} />
-            <Route path="/search-results" element={<SearchResults />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/text-ai" element={<TextAI />} />
+              <Route path="/image-ai" element={<ImageAI />} />
+              <Route path="/headshots-ai" element={<HeadshotsAI />} />
+              <Route path="/video-editors-ai" element={<VideoEditorsAI />} />
+              <Route path="/data-ai" element={<DataAI />} />
+              <Route path="/voice-ai" element={<VoiceAI />} />
+              <Route path="/all-tools" element={<AllTools />} />
+              <Route path="/search-results" element={<SearchResults />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
       </BrowserRouter>
     </ThemeProvider>

@@ -1,7 +1,7 @@
 import SearchHero from '@/components/SearchHero';
 import AIToolCard from '@/components/AIToolCard';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles, Zap, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, TrendingUp, Rocket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Mock data for AI tools
@@ -177,6 +177,34 @@ export default function Home() {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Newly Launched AI Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-background to-secondary/10">
+        <div className="container mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <Rocket className="w-6 h-6 text-accent animate-float" />
+              <h2 className="text-3xl md:text-4xl font-bold gradient-accent-text">
+                Newly Launched AI Tools
+              </h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The latest AI innovations that just hit the market
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredTools.slice(3, 6).map((tool) => (
+              <div key={tool.id} className="relative">
+                <div className="absolute -top-3 -right-3 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full z-10">
+                  NEW
+                </div>
+                <AIToolCard tool={tool} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
