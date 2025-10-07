@@ -17,6 +17,9 @@ import VoiceAI from "./pages/VoiceAI";
 import AllTools from "./pages/AllTools";
 import NotFound from "./pages/NotFound";
 import SearchResults from "./pages/SearchResults";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +43,9 @@ const App = () => (
               <Route path="/voice-ai" element={<VoiceAI />} />
               <Route path="/all-tools" element={<AllTools />} />
               <Route path="/search-results" element={<SearchResults />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/about" element={<About />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

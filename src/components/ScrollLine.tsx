@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 export default function ScrollLine() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -18,7 +19,15 @@ export default function ScrollLine() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
+    <>
     <div className={`fixed right-6 top-1/2 -translate-y-1/2 z-40 transition-all duration-500 ${
       isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
     }`}>
@@ -61,6 +70,29 @@ export default function ScrollLine() {
       <div className="absolute -left-4 top-1/4 w-1 h-1 bg-primary/40 rounded-full animate-pulse" style={{ animationDelay: '0s' }}></div>
       <div className="absolute -left-6 top-1/2 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
       <div className="absolute -left-4 top-3/4 w-1 h-1 bg-primary/40 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+      
+      {/* Progress Percentage Label */}
+      <div 
+        className="absolute -left-16 text-xs font-bold text-primary bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg px-2 py-1 transition-all duration-300"
+        style={{ 
+          top: `${scrollProgress * 100}%`,
+          transform: 'translateY(-50%)'
+        }}
+      >
+        {Math.round(scrollProgress * 100)}%
+      </div>
     </div>
+    
+    {/* Scroll to Top Button */}
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-gradient-primary text-white rounded-full shadow-neon flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+      }`}
+      aria-label="Scroll to top"
+    >
+      <ArrowUp className="w-6 h-6" />
+    </button>
+    </>
   );
 }
