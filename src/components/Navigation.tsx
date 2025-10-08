@@ -4,28 +4,23 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { 
   Search, 
-  Brain, 
-  Image, 
-  Mic, 
-  BarChart3, 
-  Video, 
-  FileText, 
-  Camera,
   Menu,
   X,
-  Sparkles
+  Sparkles,
+  ChevronDown,
+  Grid3x3
 } from 'lucide-react';
 import ThemeToggle from '@/components/ThemeToggle';
 import SearchSuggestions from '@/components/SearchSuggestions';
-
-const aiCategories = [
-  { name: 'Text & Language', href: '/text-ai', icon: FileText, color: 'ai-text' },
-  { name: 'Image & Vision', href: '/image-ai', icon: Image, color: 'ai-image' },
-  { name: 'Audio & Voice', href: '/voice-ai', icon: Mic, color: 'ai-voice' },
-  { name: 'Data & Analytics', href: '/data-ai', icon: BarChart3, color: 'ai-data' },
-  { name: 'Video Editors', href: '/video-editors-ai', icon: Video, color: 'ai-text' },
-  { name: 'Headshots', href: '/headshots-ai', icon: Camera, color: 'ai-image' },
-];
+import { categoryGroups } from '@/data/categories';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,22 +84,49 @@ export default function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-2">
-              {aiCategories.map((category, index) => {
-                const IconComponent = category.icon;
-                return (
-                  <Link
-                    key={category.name}
-                    to={category.href}
-                    className="relative flex items-center space-x-2 px-4 py-2 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group hover:bg-secondary/30 backdrop-blur-sm"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <IconComponent className="w-4 h-4 group-hover:text-primary group-hover:scale-110 transition-all duration-300" />
-                    <span className="text-sm font-medium">{category.name}</span>
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10"></div>
-                    <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
-                  </Link>
-                );
-              })}
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="bg-transparent hover:bg-secondary/30">
+                      <Grid3x3 className="w-4 h-4 mr-2" />
+                      Categories
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="w-[800px] p-6">
+                        <div className="grid grid-cols-2 gap-4">
+                          {categoryGroups.map((group) => {
+                            const GroupIcon = group.icon;
+                            return (
+                              <Link
+                                key={group.id}
+                                to="/all-categories"
+                                className="group flex items-start gap-3 p-4 rounded-xl hover:bg-secondary/50 transition-all duration-300"
+                              >
+                                <div className={`p-2 rounded-lg bg-gradient-to-br ${group.color} shadow-lg`}>
+                                  <GroupIcon className="w-5 h-5 text-white" />
+                                </div>
+                                <div>
+                                  <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+                                    {group.name}
+                                  </h3>
+                                  <p className="text-xs text-muted-foreground">
+                                    Explore {group.name.toLowerCase()} tools
+                                  </p>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                        <Link to="/all-categories">
+                          <Button variant="outline" className="w-full mt-4">
+                            View All 50+ Categories
+                          </Button>
+                        </Link>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </div>
 
             {/* Search Bar & Theme Toggle - Desktop */}
@@ -181,18 +203,28 @@ export default function Navigation() {
 
               {/* Mobile Categories */}
               <div className="space-y-2">
-                {aiCategories.map((category, index) => {
-                  const IconComponent = category.icon;
+                <Link
+                  to="/all-categories"
+                  className="flex items-center space-x-3 p-3 rounded-xl bg-primary/10 hover:bg-primary/20 transition-all duration-300 group backdrop-blur-sm font-semibold"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Grid3x3 className="w-5 h-5 text-primary" />
+                  <span>All Categories</span>
+                  <ChevronDown className="w-4 h-4 ml-auto" />
+                </Link>
+                
+                {categoryGroups.map((group, index) => {
+                  const GroupIcon = group.icon;
                   return (
                     <Link
-                      key={category.name}
-                      to={category.href}
+                      key={group.id}
+                      to="/all-categories"
                       className="flex items-center space-x-3 p-3 rounded-xl hover:bg-secondary/30 transition-all duration-300 group backdrop-blur-sm animate-fade-in"
                       style={{ animationDelay: `${index * 100}ms` }}
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      <IconComponent className="w-5 h-5 text-primary group-hover:scale-110 transition-all duration-300" />
-                      <span className="font-medium">{category.name}</span>
+                      <GroupIcon className="w-5 h-5 text-primary group-hover:scale-110 transition-all duration-300" />
+                      <span className="font-medium">{group.name}</span>
                     </Link>
                   );
                 })}

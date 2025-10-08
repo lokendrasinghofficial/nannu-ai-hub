@@ -1,107 +1,14 @@
 import SearchHero from '@/components/SearchHero';
 import AIToolCard from '@/components/AIToolCard';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles, Zap, TrendingUp, Rocket } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, TrendingUp, Rocket, Grid3x3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { categoryGroups } from '@/data/categories';
+import { allAITools } from '@/data/aiTools';
 
-// Mock data for AI tools
-const featuredTools = [
-  {
-    id: '1',
-    name: 'ChatGPT',
-    description: 'Advanced conversational AI for writing, coding, and creative tasks. Get help with complex problems and generate high-quality content.',
-    category: 'text',
-    pricing: 'freemium' as const,
-    rating: 4.8,
-    url: 'https://chat.openai.com',
-    features: ['Text Generation', 'Code Assistance', 'Creative Writing', 'Problem Solving']
-  },
-  {
-    id: '2',
-    name: 'Midjourney',
-    description: 'Create stunning, artistic images from text descriptions. Perfect for creative projects and professional design work.',
-    category: 'image',
-    pricing: 'paid' as const,
-    rating: 4.9,
-    url: 'https://midjourney.com',
-    features: ['Image Generation', 'Artistic Styles', 'High Resolution', 'Commercial Use']
-  },
-  {
-    id: '3',
-    name: 'ElevenLabs',
-    description: 'Generate realistic AI voices and clone your own voice. Perfect for podcasts, audiobooks, and voiceovers.',
-    category: 'voice',
-    pricing: 'freemium' as const,
-    rating: 4.7,
-    url: 'https://elevenlabs.io',
-    features: ['Voice Cloning', 'Multiple Languages', 'Realistic Speech', 'API Access']
-  },
-  {
-    id: '4',
-    name: 'Claude',
-    description: 'Anthropic\'s AI assistant for analysis, writing, and coding. Great for research and complex reasoning tasks.',
-    category: 'text',
-    pricing: 'freemium' as const,
-    rating: 4.6,
-    url: 'https://claude.ai',
-    features: ['Long Context', 'Analysis', 'Coding', 'Research']
-  },
-  {
-    id: '5',
-    name: 'Runway ML',
-    description: 'AI-powered video editing and generation tools. Create, edit, and enhance videos with artificial intelligence.',
-    category: 'video',
-    pricing: 'freemium' as const,
-    rating: 4.5,
-    url: 'https://runwayml.com',
-    features: ['Video Generation', 'Video Editing', 'Green Screen', 'Motion Capture']
-  },
-  {
-    id: '6',
-    name: 'Perplexity AI',
-    description: 'AI-powered search engine that provides accurate answers with sources. Perfect for research and fact-checking.',
-    category: 'research',
-    pricing: 'freemium' as const,
-    rating: 4.4,
-    url: 'https://perplexity.ai',
-    features: ['Search & Research', 'Source Citations', 'Real-time Data', 'Academic Mode']
-  }
-];
-
-const categories = [
-  {
-    name: 'Text & Language AI',
-    description: 'Writing, coding, and content generation tools',
-    icon: '🤖',
-    count: 150,
-    color: 'hero',
-    route: '/text-ai'
-  },
-  {
-    name: 'Image & Vision AI',
-    description: 'Image generation, editing, and analysis tools',
-    icon: '🎨',
-    count: 120,
-    color: 'accent',
-    route: '/image-ai'
-  },
-  {
-    name: 'Audio & Voice AI',
-    description: 'Voice synthesis, music, and audio processing',
-    icon: '🎵',
-    count: 80,
-    color: 'voice',
-    route: '/voice-ai'
-  },
-  {
-    name: 'Data & Analytics',
-    description: 'Business intelligence and data analysis tools',
-    icon: '📊',
-    count: 90,
-    color: 'data',
-    route: '/data-ai'
-  }
-];
+// Featured and newly launched tools from our comprehensive database
+const featuredTools = allAITools.slice(0, 6);
+const newlyLaunchedTools = allAITools.slice(6, 9);
 
 export default function Home() {
   return (
@@ -114,36 +21,49 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold gradient-text">
-              Explore AI by Category
+              50+ AI Categories
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Find the perfect AI tool for your specific needs across these popular categories
+              Explore comprehensive AI tool categories for every need
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category, index) => (
-              <Link
-                key={index}
-                to={category.route}
-                className="group bg-card/30 backdrop-blur-sm border border-border/50 rounded-2xl p-6 hover:border-primary/30 transition-smooth hover:shadow-card cursor-pointer block"
-              >
-                <div className="text-center space-y-4">
-                  <div className="text-4xl mb-4 group-hover:animate-bounce">
-                    {category.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+            {categoryGroups.map((group, index) => {
+              const IconComponent = group.icon;
+              return (
+                <Link
+                  key={group.id}
+                  to="/all-categories"
+                  className="group relative p-6 rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl backdrop-blur-sm animate-fade-in overflow-hidden"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  
+                  <div className="relative z-10">
+                    <div className={`inline-flex p-3 rounded-xl mb-3 bg-gradient-to-br ${group.color} shadow-lg group-hover:scale-110 transition-all duration-500`}>
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                      {group.name}
+                    </h3>
+                    
+                    <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 absolute bottom-4 right-4" />
                   </div>
-                  <h3 className="text-lg font-semibold group-hover:gradient-text transition-smooth">
-                    {category.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                  <div className="text-2xl font-bold text-primary">
-                    {category.count}+ tools
-                  </div>
-                </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="text-center">
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/all-categories">
+                <Grid3x3 className="w-5 h-5 mr-2" />
+                View All 50+ Categories
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
-            ))}
+            </Button>
           </div>
         </div>
       </section>
@@ -197,7 +117,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredTools.slice(3, 6).map((tool) => (
+            {newlyLaunchedTools.map((tool) => (
               <div key={tool.id} className="relative">
                 <div className="absolute -top-3 -right-3 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full z-10">
                   NEW
