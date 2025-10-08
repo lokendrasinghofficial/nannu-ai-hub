@@ -288,6 +288,158 @@ export const allAITools = [
     rating: 4.6,
     url: 'https://freeletics.com',
     features: ['Personalized Workouts', 'Nutrition Plans', 'Progress Tracking', 'Adaptive']
+  },
+
+  // LOGO GENERATORS
+  {
+    id: 'looka',
+    name: 'Looka',
+    description: 'Generate logo ideas for free, customize them, and download high-resolution brand kits.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.7,
+    url: 'https://looka.com/ai-logo-generator',
+    features: ['Logo Ideas Free', 'Brand Kit', 'Customization', 'Color Experimentation']
+  },
+  {
+    id: 'designs-ai',
+    name: 'Designs.ai LogoMaker',
+    description: 'Powerful AI logo maker with large icon library and design customization options.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.6,
+    url: 'https://designs.ai/logomaker',
+    features: ['Icon Library', 'AI Logo Maker', 'Brand Assets', 'Marketing Use']
+  },
+  {
+    id: 'logo-com',
+    name: 'Logo.com',
+    description: 'Create logos for free and browse unlimited designs with premium brand kits available.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.5,
+    url: 'https://logo.com/logos/artificial-intelligence',
+    features: ['Free Logo Maker', 'Branding Kit', 'Download Full Package', 'Unlimited Designs']
+  },
+  {
+    id: 'hatchful',
+    name: 'Hatchful by Shopify',
+    description: 'Simple, user-friendly, completely free logo generator for small businesses.',
+    category: 'logo-generators',
+    pricing: 'free' as const,
+    rating: 4.6,
+    url: 'https://www.andacademy.com/resources/blog/graphic-design/ai-logo-design-free-tools',
+    features: ['Free Logo Tool', 'Business Logo Maker', 'Customizable Templates', 'User-Friendly']
+  },
+  {
+    id: 'canva-logo',
+    name: 'Canva AI Logo Generator',
+    description: 'Combines templates with AI-based generation and drag-and-drop design functionality.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.7,
+    url: 'https://www.canva.com/ai-logo-generator',
+    features: ['Template + AI', 'Drag and Drop Logo', 'Easy Design', 'Premium Assets']
+  },
+  {
+    id: 'namecheap-logo',
+    name: 'Namecheap Logo Maker',
+    description: '100% free AI-powered logo generator that creates high-quality logos with no watermark.',
+    category: 'logo-generators',
+    pricing: 'free' as const,
+    rating: 4.5,
+    url: 'https://www.namecheap.com/logo-maker',
+    features: ['Free Logo No Watermark', 'AI Wizard', 'High Quality', 'Quick Branding']
+  },
+  {
+    id: 'logomaster',
+    name: 'Logomaster.ai',
+    description: 'Create and edit logos freely in trial mode with premium plans for high-quality exports.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.4,
+    url: 'https://logomaster.ai',
+    features: ['Logo Templates', 'Edit Logos', 'Free Try', 'High-Quality Exports']
+  },
+  {
+    id: 'freelogodesign',
+    name: 'FreeLogoDesign.org',
+    description: 'Free logo creation and editing with premium add-ons for high-resolution downloads.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.5,
+    url: 'https://www.freelogodesign.org',
+    features: ['Free Logo Maker', 'Premium Add-ons', 'Logo Editing', 'Brand Assets']
+  },
+  {
+    id: 'myfreelogomaker',
+    name: 'MyFreeLogoMaker',
+    description: 'Create and download logos in PNG format completely free - minimal, fast, and ideal.',
+    category: 'logo-generators',
+    pricing: 'free' as const,
+    rating: 4.4,
+    url: 'https://myfreelogomaker.com',
+    features: ['Download Free Logo', 'Free Design Tool', 'PNG Format', 'Quick Projects']
+  },
+  {
+    id: 'logodiffusion',
+    name: 'LogoDiffusion',
+    description: 'Generative AI-based logo maker using text prompts to create up to 4 design options.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.6,
+    url: 'https://logodiffusion.com',
+    features: ['Text-to-Logo', 'Generative AI Logos', 'Commercial Rights', 'Multiple Options']
+  },
+  {
+    id: 'logomakerr',
+    name: 'Logomakerr.ai',
+    description: 'Instant AI logo generation with deep customization options and pay-when-satisfied model.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.5,
+    url: 'https://logomakerr.ai',
+    features: ['Instant Logo', 'Customizable AI', 'Deep Customization', 'Flexible Payment']
+  },
+  {
+    id: 'brandmark',
+    name: 'Brandmark',
+    description: 'Premium AI logo generator with free previews, brand kits, and social media assets.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.7,
+    url: 'https://brandmark.io',
+    features: ['Branding Assets', 'Brand Guide', 'Logo + Social', 'Cohesive Visuals']
+  },
+  {
+    id: 'logopony',
+    name: 'Logopony',
+    description: 'AI logo generation with premium font and icon pairing for high-quality results.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.5,
+    url: 'https://www.logopony.com',
+    features: ['AI Logo Maker', 'Icon + Font Combinations', 'Premium Pairing', 'High Quality']
+  },
+  {
+    id: 'logoai',
+    name: 'LogoAI',
+    description: 'AI-powered logo generator producing unique and customizable logos with brand guidelines.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.6,
+    url: 'https://www.logoai.com/logo-maker',
+    features: ['Unique Logos', 'Brand Guidelines', 'Customizable', 'Full Output']
+  },
+  {
+    id: 'sologo',
+    name: 'Sologo AI',
+    description: 'Multilingual AI logo generation with unlimited generations and vector support.',
+    category: 'logo-generators',
+    pricing: 'freemium' as const,
+    rating: 4.6,
+    url: 'https://www.sologo.ai',
+    features: ['Brand Kit', 'Vector Support', 'Commercial Use', 'Multilingual']
   }
 ];
 
