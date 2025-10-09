@@ -18,10 +18,10 @@ export default function CategoryPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
           <p className="text-muted-foreground mb-8">The category you're looking for doesn't exist.</p>
-          <Link to="/">
+          <Link to="/all-categories">
             <Button>
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              Back to All Categories
             </Button>
           </Link>
         </div>
@@ -37,7 +37,7 @@ export default function CategoryPage() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-12">
-          <Link to="/">
+          <Link to="/all-categories">
             <Button variant="ghost" className="mb-6 hover:bg-primary/10">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to All Categories
