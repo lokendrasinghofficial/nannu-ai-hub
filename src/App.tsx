@@ -22,6 +22,8 @@ import Terms from "./pages/Terms";
 import About from "./pages/About";
 import AllCategories from "./pages/AllCategories";
 import CategoryPage from "./pages/CategoryPage";
+import AdminLogin from "./pages/AdminLogin";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +52,8 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/all-categories" element={<AllCategories />} />
               <Route path="/category/:categoryId" element={<CategoryPage />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<Admin />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
